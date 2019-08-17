@@ -1,20 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"os"
+	"text/template"
+)
 
 func main() {
-	name := "Ashish Rao"
-	tpl := `
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-		<meta charset="UTF-8">
-		<title>Hello world</title>
-		</head>
-		<body>
-		<h1> ` + name + `</h1>
-		</body>
-		</html>
-	`
-	fmt.Println(tpl)
+	tpl, err := template.ParseFiles("file.gohtml") // template.ParseFiles returns a pointer to template and an error object.
+	// So after that we use pointer to template to perform the Exedcute method which is a recevier function to pointer to template
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = tpl.Execute(os.Stdout, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
