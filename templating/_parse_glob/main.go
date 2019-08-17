@@ -13,7 +13,7 @@ func init() { // This function runs once when the program is starting up.
 }
 
 func main() {
-	err := tpl.ExecuteTemplate(os.Stdout, "three.txt", nil)
+	err := tpl.ExecuteTemplate(os.Stdout, "three.txt", 42)
 	if err != nil {
 		log.Fatalln(err)
 	}
