@@ -15,6 +15,7 @@ func ParseFiles(filenames ...string) (*Template, error)
 ```
 
 <h3>template.ParseGlob</h3>
+
 ```go
 func parseGlob(pattern string) (*Template, error)
 ```
