@@ -1,25 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"io"
 	"log"
 	"os"
-	"strings"
+	"text/template"
 )
 
 func main() {
-	name := "Ashish Rao"
-	str := fmt.Sprint(
-		`<html>
-				<head>
-					<title>Hello world</title>
-				</head>
-				<body>
-					<h1> ` + name + ` </h1>
-				</body>
-			</html>
-		`)
+	tpl, err := template.ParseFiles("file.gohtml")
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	nf, err := os.Create("index.html")
 	if err != nil {
@@ -27,6 +18,8 @@ func main() {
 	}
 
 	defer nf.Close()
-
-	io.Copy(nf, strings.NewReader(str))
+	err = tpl.Execute(nf, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
