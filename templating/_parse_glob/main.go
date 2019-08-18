@@ -13,7 +13,13 @@ func init() { // This function runs once when the program is starting up.
 }
 
 func main() {
-	err := tpl.ExecuteTemplate(os.Stdout, "three.txt", 42)
+
+	players := map[string]string{
+		"India":   "Chhetri",
+		"America": "Pulisic",
+		"Spain":   "Ceballos",
+	}
+	err := tpl.ExecuteTemplate(os.Stdout, "three.txt", players)
 	if err != nil {
 		log.Fatalln(err)
 	}
