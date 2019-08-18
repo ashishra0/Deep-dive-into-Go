@@ -1,3 +1,5 @@
-{{$number := .}}
+{{range $key, $val := .}}
 
-The meaning of life is {{$number}}
+The details are {{$key}} - {{$val}}
+
+{{end}}
